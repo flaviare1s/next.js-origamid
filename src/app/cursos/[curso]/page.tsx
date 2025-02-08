@@ -1,11 +1,9 @@
 import { getCurso } from "@/api/cursos";
 import Link from "next/link";
 
-export default async function CursoPage(
-  props: {
-    params: Promise<{ curso: string }>;
-  }
-) {
+export default async function CursoPage(props: {
+  params: Promise<{ curso: string }>;
+}) {
   const params = await props.params;
   const curso = await getCurso(params.curso);
   return (
