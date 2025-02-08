@@ -1,7 +1,7 @@
 type PageParams = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 };
 
 type Produto = {
@@ -13,10 +13,11 @@ type Produto = {
   importado: number
 };
 
-export default async function ProdutoPage({params}: PageParams) {
+export default async function ProdutoPage(props: PageParams) {
+  const params = await props.params;
   const response = await fetch(`https://api.origamid.online/produtos/${params.id}`);
   const data = await response.json() as Produto;
-  
+
   return (
     <main>
       <h1>{data.nome}</h1>

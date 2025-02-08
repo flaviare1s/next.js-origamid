@@ -1,11 +1,12 @@
 import { getAula } from "@/api/cursos";
 import Link from "next/link";
 
-export default async function AulaPage({
-  params,
-}: {
-  params: { curso: string; aula: string };
-}) {
+export default async function AulaPage(
+  props: {
+    params: Promise<{ curso: string; aula: string }>;
+  }
+) {
+  const params = await props.params;
   const aula = await getAula(params.curso, params.aula);
   return (
     <main>
